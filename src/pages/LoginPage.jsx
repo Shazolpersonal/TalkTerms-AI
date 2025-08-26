@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Icon from '../components/Icon';
-import { signInWithGoogle } from '../firebase/auth';
+import Icon from '@/components/Icon';
+import { signInWithGoogle } from '@/firebase/auth';
 
 const LoginPage = () => {
   const navigate = useNavigate();
