@@ -40,7 +40,7 @@ const ResultsPage = () => {
               </TabsContent>
             </CardContent>
           </Card>
-        </div>
+        </Tabs>
       </div>
     </div>
   );
