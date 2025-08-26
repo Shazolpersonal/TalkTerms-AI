@@ -5,7 +5,7 @@ const Button = ({ children, onClick, variant = 'primary', className = '' }) => {
 
   const variantStyles = {
     primary: 'bg-[--color-action-blue] text-white hover:bg-blue-600 focus:ring-[--color-action-blue]',
-    secondary: 'bg-transparent text-[--color-action-blue] border border-[--color-action-blue] hover:bg-blue-50 focus:ring-[--color-action-blue]',
+    secondary: 'bg-transparent text-[--color-text-primary] border border-[--color-text-primary] hover:bg-blue-50 focus:ring-[--color-action-blue]',
   };
 
   return (
