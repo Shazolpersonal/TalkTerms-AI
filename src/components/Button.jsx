@@ -4,8 +4,8 @@ const Button = ({ children, onClick, variant = 'primary', className = '' }) => {
   const baseStyles = 'px-6 py-2 font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200 ease-in-out';
 
   const variantStyles = {
-    primary: 'bg-[--color-action-blue] text-white hover:bg-blue-600 focus:ring-[--color-action-blue]',
-    secondary: 'bg-transparent text-[--color-text-primary] border border-[--color-text-primary] hover:bg-blue-50 focus:ring-[--color-action-blue]',
+    primary: 'bg-[#4A90E2] text-white hover:bg-blue-600 focus:ring-[#4A90E2]',
+    secondary: 'bg-transparent text-[#1F2937] border border-[#1F2937] hover:bg-blue-50 focus:ring-[#4A90E2]',
   };
 
   return (
