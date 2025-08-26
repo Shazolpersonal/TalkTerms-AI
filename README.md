@@ -1,8 +1,8 @@
-# TalkTerms AI: The Master Blueprint (v1.5)
+# TalkTerms AI: The Master Blueprint (v1.6)
 
-**Project Status:** Phase 2 - UI/UX Refinement & Core Logic Implementation
+**Project Status:** Phase 2 - Critical Bug Fix & Code Review
 
-This document serves as the single source of truth for the TalkTerms AI project. All development must adhere to the principles and specifications outlined herein.
+This document serves as the single source of truth for the TalkTerms AI project.
 
 ---
 
@@ -35,23 +35,16 @@ This document serves as the single source of truth for the TalkTerms AI project.
     *   **Secondary/Outline Action:** Transparent background with a strong border and text color (`#1F2937`) for high visibility.
 
 ---
-
 ## 4. Development Roadmap
 
 *   **Phase 1: Foundation & Landing Page**
-    *   **Task 1.1 - 1.9:** All foundational setup, page construction, and design polish tasks are **(✓ Completed)**.
+    *   All tasks are **(✓ Completed)**.
 
-*   **Phase 2: Authentication, Dashboard & Refinement (Current Focus)**
-    *   **Task 2.1 - 2.5:** Initial Auth & Dashboard setup. **(✓ Completed)**
-    *   **Task 2.6: Consolidate Authentication Flow:**
-        *   In the `Navbar`, merge the "Login" and "Sign Up" buttons into a single, primary action button labeled **"Get Started"**.
-        *   This "Get Started" button will now be the main entry point for new and returning users, directly initiating the Google sign-up/login process.
-    *   **Task 2.7: Refine Dashboard UI/UX:**
-        *   Remove all redundant elements. The `Navbar` should be the single source for user info and logout. Remove the duplicate "Welcome, [Name]!" message and the second "Logout" button from the main dashboard body.
-        *   The dashboard body should be clean, focusing only on the primary action: "Start Your First Negotiation".
-    *   **Task 2.8: Activate the "Glimpse" Button:**
-        *   Make the "Get Your Glimpse" button on the `LandingPage` functional.
-        *   When clicked, it should smoothly scroll the user down to the "Glimpse of the Power" section of the page.
+*   **Phase 2: Authentication, Dashboard & Refinement**
+    *   **Task 2.6 - 2.8:** UI/UX Refinements. **(✓ Completed)**
+    *   **Task 2.9 (Current Focus): Critical Bug Fix for Authentication & Code Cleanup.**
+        *   **2.9.1 (Bug Fix):** The "Get Started" button in the `Navbar` is not completing the sign-in process. The Google Auth popup appears briefly and then disappears. This needs to be debugged and fixed to ensure a successful login and redirect to the dashboard.
+        *   **2.9.2 (Code Review & Cleanup):** Conduct a self-review of all code related to the authentication flow (`Navbar.jsx`, `LoginPage.jsx`, `auth.js`, `AuthContext`). Remove any redundant, duplicate, or commented-out code to ensure the codebase is clean, efficient, and professional.
 
 *   **Phase 3: Core AI Functionality**
     *   *(Tasks to be defined)*
