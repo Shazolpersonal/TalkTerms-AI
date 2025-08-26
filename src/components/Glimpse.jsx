@@ -21,7 +21,7 @@ const Glimpse = () => {
   const TabButton = ({ id, children }) => (
     <button
       onClick={() => setActiveTab(id)}
-      className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ease-in-out transform hover:scale-[1.02] hover:shadow-lg ${activeTab === id ? 'bg-[--color-action-blue] text-white shadow-md' : 'bg-white text-[--color-text-primary] shadow-sm'}`}
+      className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ease-in-out transform hover:scale-[1.02] ${activeTab === id ? 'bg-[#4A90E2] text-white shadow-md' : 'bg-transparent text-[#1F2937] border border-[#1F2937] hover:bg-blue-50 hover:shadow-lg'}`}
     >
       {children}
     </button>
@@ -32,7 +32,7 @@ const Glimpse = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-[--color-text-primary]">Get a Glimpse of the Power</h2>
-          <p className="mt-4 text-lg text-[#4b5563]">See how TalkTerms AI transforms your negotiations.</p>
+          <p className="mt-4 text-lg text-[--color-text-primary]">See how TalkTerms AI transforms your negotiations.</p>
         </div>
         <div className="mt-12">
           <div className="flex justify-center space-x-4">
@@ -43,12 +43,12 @@ const Glimpse = () => {
           <div className="mt-8 max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-lg font-semibold text-[#6b7280]">Before</h3>
-                <p className="mt-4 text-[#374151]">{glimpseData[activeTab].before}</p>
+                <h3 className="text-lg font-semibold text-[--color-text-primary]">Before</h3>
+                <p className="mt-4 text-[--color-text-primary]">{glimpseData[activeTab].before}</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-lg border border-[--color-action-blue]">
                 <h3 className="text-lg font-semibold text-[--color-action-blue]">After TalkTerms AI</h3>
-                <p className="mt-4 text-[#374151]" dangerouslySetInnerHTML={{ __html: glimpseData[activeTab].after }} />
+                <p className="mt-4 text-[--color-text-primary]" dangerouslySetInnerHTML={{ __html: glimpseData[activeTab].after }} />
               </div>
             </div>
           </div>
