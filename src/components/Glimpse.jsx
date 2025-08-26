@@ -21,7 +21,7 @@ const Glimpse = () => {
   const TabButton = ({ id, children }) => (
     <button
       onClick={() => setActiveTab(id)}
-      className={`px-4 py-2 text-sm font-semibold rounded-lg ${activeTab === id ? 'bg-[--color-action-blue] text-white' : 'bg-white text-[--color-text-primary]'}`}
+      className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 ease-in-out transform hover:scale-[1.02] hover:shadow-lg ${activeTab === id ? 'bg-[--color-action-blue] text-white shadow-md' : 'bg-white text-[--color-text-primary] shadow-sm'}`}
     >
       {children}
     </button>

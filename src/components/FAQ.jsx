@@ -23,7 +23,7 @@ const FaqItem = ({ faq }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="py-6 border-b border-gray-200">
+        <div className="bg-white p-6 rounded-lg shadow-sm mb-4 transition-shadow duration-200 hover:shadow-md">
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="w-full flex justify-between items-center text-left text-lg font-semibold text-[--color-text-primary]"
@@ -31,7 +31,7 @@ const FaqItem = ({ faq }) => {
                 <span>{faq.question}</span>
                 <span className="text-[--color-action-blue] transform transition-transform duration-300" style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0)' }}>+</span>
             </button>
-            <div className={`mt-4 overflow-hidden transition-max-height duration-500 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
+            <div className={`mt-4 overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
                 <p className="text-base text-[#4b5563] pr-8">
                     {faq.answer}
                 </p>
