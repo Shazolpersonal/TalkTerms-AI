@@ -4,6 +4,8 @@ import { useAuth } from './context/AuthContext';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
+import NegotiatePage from './pages/NegotiatePage';
+import ResultsPage from './pages/ResultsPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -32,6 +34,22 @@ function App() {
             element={
               <ProtectedRoute>
                 <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/negotiate"
+            element={
+              <ProtectedRoute>
+                <NegotiatePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/negotiate/results"
+            element={
+              <ProtectedRoute>
+                <ResultsPage />
               </ProtectedRoute>
             }
           />
