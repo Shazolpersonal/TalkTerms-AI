@@ -1,28 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/context/AuthContext';
-import { signOut } from '@/firebase/auth';
+// import { useNavigate } from 'react-router-dom'; // No longer needed
+// import { useAuth } from '@/context/AuthContext'; // No longer needed
+// import { signOut } from '@/firebase/auth'; // No longer needed
 import Button from '@/components/Button';
 
 const DashboardPage = () => {
-  const { currentUser } = useAuth();
-  const navigate = useNavigate();
+  // const { currentUser } = useAuth(); // No longer needed
+  // const navigate = useNavigate(); // No longer needed
 
-  const handleLogout = async () => {
-    await signOut();
-    navigate('/');
-  };
+  // The primary logout button is in the Navbar, so local handler is not needed.
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold">
-          Welcome, {currentUser?.displayName || 'User'}!
-        </h1>
-        <Button onClick={handleLogout} variant="secondary">
-          Logout
-        </Button>
-      </div>
+    <div className="container mx-auto px-4 py-8 flex items-center justify-center" style={{ minHeight: 'calc(100vh - 64px)' }}>
       <div className="text-center">
         <div className="bg-white p-8 rounded-lg shadow-lg inline-block">
           <h2 className="text-2xl font-semibold mb-4">Ready to Begin?</h2>
