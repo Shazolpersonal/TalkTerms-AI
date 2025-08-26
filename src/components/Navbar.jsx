@@ -9,8 +9,10 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    await signInWithGoogle();
-    // The AuthContext will handle navigation to the dashboard.
+    const { user } = await signInWithGoogle();
+    if (user) {
+      navigate('/dashboard');
+    }
   };
 
   const handleLogout = async () => {

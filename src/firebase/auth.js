@@ -7,18 +7,12 @@ const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
-    // The signed-in user info.
     const user = result.user;
     return { user };
   } catch (error) {
-    // Handle Errors here.
     const errorCode = error.code;
     const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData ? error.customData.email : 'N/A';
-    // The AuthCredential type that was used.
-    const credential = GoogleAuthProvider.credentialFromError(error);
-    console.error("Authentication Error", { errorCode, errorMessage, email, credential });
+    console.error("Authentication Error", { errorCode, errorMessage });
     return { error: errorMessage };
   }
 };
