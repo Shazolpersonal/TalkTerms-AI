@@ -1,3 +1,19 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-action-blue: #4A90E2;
+  --color-clean-slate: #F5F7FA;
+  --color-text-primary: #1F2937;
+
+  --font-family-sans: 'Inter', sans-serif;
+
+  --border-radius-lg: 8px;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-clean-slate);
+    color: var(--color-text-primary);
+    font-family: var(--font-family-sans);
+  }
+}
