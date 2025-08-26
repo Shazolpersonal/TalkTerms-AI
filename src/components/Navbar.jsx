@@ -9,10 +9,8 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    const { user } = await signInWithGoogle();
-    if (user) {
-      navigate('/dashboard');
-    }
+    await signInWithGoogle();
+    // Auth state changes will trigger redirect logic elsewhere.
   };
 
   const handleLogout = async () => {
