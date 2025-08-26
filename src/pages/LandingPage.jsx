@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
-import Navbar from '../components/Navbar';
-import Button from '../components/Button';
-import Glimpse from '../components/Glimpse';
-import FAQ from '../components/FAQ';
-import Footer from '../components/Footer';
-import FadeInSection from '../components/FadeInSection';
+import Navbar from '@/components/Navbar';
+import Button from '@/components/Button';
+import Glimpse from '@/components/Glimpse';
+import FAQ from '@/components/FAQ';
+import Footer from '@/components/Footer';
+import FadeInSection from '@/components/FadeInSection';
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import { signOut } from '../firebase/auth';
-import Button from '../components/Button';
+import { useAuth } from '@/context/AuthContext';
+import { signOut } from '@/firebase/auth';
+import Button from '@/components/Button';
 
 const DashboardPage = () => {
   const { currentUser } = useAuth();
