@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const handleLogin = async () => {
     await signInWithGoogle();
-    // The AuthContext will handle navigation to the dashboard.
+    // Auth state changes will trigger redirect logic elsewhere.
   };
 
   const handleLogout = async () => {

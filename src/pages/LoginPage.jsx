@@ -1,29 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Icon from '@/components/Icon';
-import { signInWithGoogle } from '@/firebase/auth';
 
 const LoginPage = () => {
-  const navigate = useNavigate();
-
-  const handleGoogleLogin = async () => {
-    const { user } = await signInWithGoogle();
-    if (user) {
-      navigate('/dashboard');
-    }
-  };
-
   return (
-    <div className="flex items-center justify-center h-full">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-8">Login to TalkTerms</h1>
-        <button
-          onClick={handleGoogleLogin}
-          className="bg-white text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow hover:shadow-lg transition duration-300 ease-in-out flex items-center justify-center"
-        >
-          <Icon id="google" className="w-6 h-6 mr-2" />
-          <span>Login with Google</span>
-        </button>
+    <div className="flex items-center justify-center h-full" style={{ minHeight: 'calc(100vh - 160px)' }}>
+      <div className="text-center p-8 bg-white rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold text-[--color-text-primary] mb-4">
+          Please Sign In
+        </h1>
+        <p className="text-md text-gray-600">
+          To access your dashboard, please sign in using the "Get Started" button in the top-right corner.
+        </p>
       </div>
     </div>
   );
