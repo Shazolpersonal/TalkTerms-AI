@@ -95,7 +95,16 @@ const LandingPage = () => {
               Transform your negotiation approach with AI-powered insights.
             </p>
             <div className="mt-8">
-              <Button variant="primary" className="text-lg px-8 py-4">
+              <Button
+                variant="primary"
+                className="text-lg px-8 py-4"
+                onClick={() => {
+                  const glimpseSection = document.getElementById('glimpse');
+                  if (glimpseSection) {
+                    glimpseSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+              >
                 Get Your Glimpse
               </Button>
             </div>
