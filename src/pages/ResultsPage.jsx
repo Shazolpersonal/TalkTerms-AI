@@ -17,9 +17,9 @@ const ResultsPage = () => {
             <TabsTrigger value="strategy" className="text-lg py-3">Strategy</TabsTrigger>
             <TabsTrigger value="draft" className="text-lg py-3">Draft</TabsTrigger>
           </TabsList>
-          <Card className="mt-6 border-none shadow-lg">
-            <CardContent className="p-8">
-              <TabsContent value="overview">
+          <TabsContent value="overview">
+            <Card className="mt-6 border-none shadow-lg">
+              <CardContent className="p-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                   <div className="lg:col-span-1">
                     <OfferScorecard />
@@ -28,18 +28,26 @@ const ResultsPage = () => {
                     <KeyLevers />
                   </div>
                 </div>
-              </TabsContent>
-              <TabsContent value="strategy">
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="strategy">
+            <Card className="mt-6 border-none shadow-lg">
+              <CardContent className="p-8">
                 <div className="space-y-8">
                   <TalkingPoints />
                   <CounterProposals />
                 </div>
-              </TabsContent>
-              <TabsContent value="draft">
+              </CardContent>
+            </Card>
+          </TabsContent>
+          <TabsContent value="draft">
+            <Card className="mt-6 border-none shadow-lg">
+              <CardContent className="p-8">
                 <DraftEmail />
-              </TabsContent>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </TabsContent>
         </Tabs>
       </div>
     </div>
