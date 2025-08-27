@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import OfferScorecard from '@/components/OfferScorecard';
@@ -6,8 +7,29 @@ import KeyLevers from '@/components/KeyLevers';
 import TalkingPoints from '@/components/TalkingPoints';
 import CounterProposals from '@/components/CounterProposals';
 import DraftEmail from '@/components/DraftEmail';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const ResultsPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [analysis, setAnalysis] = useState(location.state?.analysis);
+
+  useEffect(() => {
+    if (!location.state?.analysis) {
+      // If no analysis data is found, it's better to redirect back
+      // to the negotiation page after a short delay, in case the user
+      // landed here by mistake.
+      const timer = setTimeout(() => navigate('/negotiate'), 2000);
+      return () => clearTimeout(timer);
+    } else {
+      setAnalysis(location.state.analysis);
+    }
+  }, [location.state, navigate]);
+
+  if (!analysis) {
+    return <ResultsSkeleton />;
+  }
+
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-5xl mx-auto">
@@ -22,10 +44,10 @@ const ResultsPage = () => {
               <CardContent className="p-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                   <div className="lg:col-span-1">
-                    <OfferScorecard />
+                    <OfferScorecard data={analysis.offerScorecard} />
                   </div>
                   <div className="lg:col-span-2">
-                    <KeyLevers />
+                    <KeyLevers data={analysis.keyLevers} />
                   </div>
                 </div>
               </CardContent>
@@ -35,8 +57,8 @@ const ResultsPage = () => {
             <Card className="mt-6 border-none shadow-lg">
               <CardContent className="p-8">
                 <div className="space-y-8">
-                  <TalkingPoints />
-                  <CounterProposals />
+                  <TalkingPoints data={analysis.talkingPoints} />
+                  <CounterProposals data={analysis.counterProposals} />
                 </div>
               </CardContent>
             </Card>
@@ -44,7 +66,7 @@ const ResultsPage = () => {
           <TabsContent value="draft">
             <Card className="mt-6 border-none shadow-lg">
               <CardContent className="p-8">
-                <DraftEmail />
+                <DraftEmail data={analysis.draftEmail} />
               </CardContent>
             </Card>
           </TabsContent>
@@ -53,5 +75,32 @@ const ResultsPage = () => {
     </div>
   );
 };
+
+const ResultsSkeleton = () => (
+  <div className="container mx-auto px-4 py-12">
+    <div className="max-w-5xl mx-auto">
+      <Skeleton className="h-12 w-full rounded-lg bg-gray-200" />
+      <Card className="mt-6 border-none shadow-lg">
+        <CardContent className="p-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-1">
+              <div className="flex flex-col items-center">
+                <Skeleton className="h-48 w-48 rounded-full" />
+                <Skeleton className="h-6 w-3/4 mt-4" />
+              </div>
+            </div>
+            <div className="lg:col-span-2 space-y-4">
+              <Skeleton className="h-10 w-1/2" />
+              <Skeleton className="h-20 w-full" />
+              <Skeleton className="h-20 w-full" />
+              <Skeleton className="h-20 w-full" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  </div>
+);
+
 
 export default ResultsPage;
