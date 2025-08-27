@@ -1,8 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Circle } from 'lucide-react';
 
-const OfferScorecard = () => {
+const OfferScorecard = ({ data }) => {
+  if (!data) {
+    return null; // Or a loading/error state
+  }
+
+  const { score, scoreValue, summary } = data;
+
   return (
     <Card className="w-full">
       <CardHeader>
@@ -24,7 +30,7 @@ const OfferScorecard = () => {
               className="text-indigo-600"
               stroke="currentColor"
               strokeWidth="3"
-              strokeDasharray="85, 100"
+              strokeDasharray={`${scoreValue}, 100`}
               d="M18 2.0845
                 a 15.9155 15.9155 0 0 1 0 31.831
                 a 15.9155 15.9155 0 0 1 0 -31.831"
@@ -33,16 +39,24 @@ const OfferScorecard = () => {
             />
           </svg>
           <div className="absolute inset-0 flex flex-col items-center justify-center">
-            <span className="text-5xl font-bold text-gray-800">B+</span>
+            <span className="text-5xl font-bold text-gray-800">{score}</span>
             <span className="text-sm text-gray-500">Overall Score</span>
           </div>
         </div>
         <div className="mt-6 text-center">
-          <p className="text-lg text-gray-600">This is a strong offer, but there are key areas for improvement.</p>
+          <p className="text-lg text-gray-600">{summary}</p>
         </div>
       </CardContent>
     </Card>
   );
+};
+
+OfferScorecard.propTypes = {
+  data: PropTypes.shape({
+    score: PropTypes.string.isRequired,
+    scoreValue: PropTypes.number.isRequired,
+    summary: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default OfferScorecard;
