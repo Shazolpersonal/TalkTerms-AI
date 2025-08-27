@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import app from '@/firebase.config.js';
-
 import Button from '@/components/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -12,32 +9,9 @@ import { Label } from '@/components/ui/label';
 
 const NegotiatePage = () => {
   const navigate = useNavigate();
-  const [negotiationText, setNegotiationText] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  const handleAnalyze = async () => {
-    if (!negotiationText.trim()) {
-      setError('Please paste your negotiation text before analyzing.');
-      return;
-    }
-
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const functions = getFunctions(app);
-      const analyzeNegotiation = httpsCallable(functions, 'analyzeNegotiation');
-      const result = await analyzeNegotiation({ text: negotiationText });
-
-      // The result.data will contain the JSON object from the cloud function
-      navigate('/negotiate/results', { state: { analysis: result.data } });
-
-    } catch (err) {
-      console.error("Error calling analyzeNegotiation function:", err);
-      setError("We couldn't analyze your text right now. Please try again later.");
-      setIsLoading(false);
-    }
+  const handleAnalyze = () => {
+    navigate('/negotiate/results');
   };
 
   return (
@@ -64,14 +38,11 @@ const NegotiatePage = () => {
                       id="message"
                       placeholder="Paste the full text of the offer, email, or contract here..."
                       className="min-h-[200px] text-base"
-                      value={negotiationText}
-                      onChange={(e) => setNegotiationText(e.target.value)}
-                      disabled={isLoading}
                     />
                   </div>
                   <div className="grid w-full gap-2">
                     <Label>Choose Your Goal</Label>
-                    <Select disabled={isLoading}>
+                    <Select>
                       <SelectTrigger>
                         <SelectValue placeholder="Select your primary objective..." />
                       </SelectTrigger>
@@ -86,14 +57,9 @@ const NegotiatePage = () => {
                 </div>
               </TabsContent>
             </Tabs>
-            {error && (
-              <div className="mt-4 text-center text-red-600 bg-red-100 p-3 rounded-md">
-                {error}
-              </div>
-            )}
             <div className="mt-8 flex justify-center">
-              <Button onClick={handleAnalyze} variant="primary" size="large" disabled={isLoading}>
-                {isLoading ? 'Analyzing...' : 'Analyze My Offer'}
+              <Button onClick={handleAnalyze} variant="primary" size="large">
+                Analyze My Offer
               </Button>
             </div>
           </CardContent>
