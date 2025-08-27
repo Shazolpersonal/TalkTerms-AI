@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import { app } from '../firebase.config.js'; // Ensure this path is correct
+import app from '@/firebase.config.js';
 
 import Button from '@/components/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
