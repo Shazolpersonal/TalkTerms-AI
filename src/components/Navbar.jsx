@@ -1,12 +1,17 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
-import { signOut } from '@/firebase/auth';
+import { signInWithGoogle, signOut } from '@/firebase/auth';
 import Button from './Button';
 
 const Navbar = () => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    await signInWithGoogle();
+    // Auth state changes will trigger redirect logic elsewhere.
+  };
 
   const handleLogout = async () => {
     await signOut();
@@ -35,7 +40,7 @@ const Navbar = () => {
                 />
               </>
             ) : (
-              <Button onClick={() => navigate('/auth')} variant="primary">
+              <Button onClick={handleLogin} variant="primary">
                 Get Started
               </Button>
             )}
