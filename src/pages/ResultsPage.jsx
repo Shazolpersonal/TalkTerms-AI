@@ -8,26 +8,18 @@ import TalkingPoints from '@/components/TalkingPoints';
 import CounterProposals from '@/components/CounterProposals';
 import DraftEmail from '@/components/DraftEmail';
 import { Skeleton } from '@/components/ui/skeleton';
-import { mockAnalysis } from '@/lib/mock-data';
 
 
 const ResultsPage = () => {
   const location = useLocation();
-  // The analysis now comes from the mock data file
-  const [analysis] = useState(location.state?.analysis || mockAnalysis);
+  const [analysis, setAnalysis] = useState(location.state?.analysis || null);
 
-  // This effect is no longer needed as we fall back to mock data
-  // useEffect(() => {
-  //   if (!location.state?.analysis) {
-  //     const timer = setTimeout(() => navigate('/negotiate'), 2000);
-  //     return () => clearTimeout(timer);
-  //   } else {
-  //     setAnalysis(location.state.analysis);
-  //   }
-  // }, [location.state, navigate]);
+  // The analysis data is now passed directly via location state.
+  // If a user navigates here directly without data, we show a skeleton.
+  // A more robust solution might redirect them or show an error.
 
   if (!analysis) {
-    // This skeleton is kept as a fallback, though it's less likely to be seen
+    // This skeleton is now the primary loading state indicator.
     return <ResultsSkeleton />;
   }
 

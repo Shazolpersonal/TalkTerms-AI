@@ -16,7 +16,7 @@ const NegotiatePage = () => {
   const [error, setError] = useState(null);
 
 
-  const handleAnalyze = () => {
+  const handleAnalyze = async () => {
     if (!negotiationText.trim()) {
       setError('Please paste your negotiation text before analyzing.');
       return;
@@ -24,11 +24,28 @@ const NegotiatePage = () => {
     setError(null);
     setIsLoading(true);
 
-    // Simulate AI analysis with a delay
-    setTimeout(() => {
-      navigate('/negotiate/results', { state: { analysis: mockAnalysis } });
+    try {
+      const response = await fetch('/.netlify/functions/analyzeNegotiation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ negotiationText }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'The analysis failed. Please try again.');
+      }
+
+      const analysis = await response.json();
+      navigate('/negotiate/results', { state: { analysis } });
+
+    } catch (err) {
+      setError(err.message);
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   return (
