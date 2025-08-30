@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
@@ -8,25 +8,27 @@ import TalkingPoints from '@/components/TalkingPoints';
 import CounterProposals from '@/components/CounterProposals';
 import DraftEmail from '@/components/DraftEmail';
 import { Skeleton } from '@/components/ui/skeleton';
+import { mockAnalysis } from '@/lib/mock-data';
+
 
 const ResultsPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [analysis, setAnalysis] = useState(location.state?.analysis);
+  // The analysis now comes from the mock data file
+  const [analysis, setAnalysis] = useState(location.state?.analysis || mockAnalysis);
 
-  useEffect(() => {
-    if (!location.state?.analysis) {
-      // If no analysis data is found, it's better to redirect back
-      // to the negotiation page after a short delay, in case the user
-      // landed here by mistake.
-      const timer = setTimeout(() => navigate('/negotiate'), 2000);
-      return () => clearTimeout(timer);
-    } else {
-      setAnalysis(location.state.analysis);
-    }
-  }, [location.state, navigate]);
+  // This effect is no longer needed as we fall back to mock data
+  // useEffect(() => {
+  //   if (!location.state?.analysis) {
+  //     const timer = setTimeout(() => navigate('/negotiate'), 2000);
+  //     return () => clearTimeout(timer);
+  //   } else {
+  //     setAnalysis(location.state.analysis);
+  //   }
+  // }, [location.state, navigate]);
 
   if (!analysis) {
+    // This skeleton is kept as a fallback, though it's less likely to be seen
     return <ResultsSkeleton />;
   }
 

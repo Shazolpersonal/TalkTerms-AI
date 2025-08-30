@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getFunctions, httpsCallable } from 'firebase/functions';
-import app from '@/firebase.config.js';
 
 import Button from '@/components/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { mockAnalysis } from '@/lib/mock-data';
 
 const NegotiatePage = () => {
   const navigate = useNavigate();
@@ -16,28 +15,20 @@ const NegotiatePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleAnalyze = async () => {
+
+  const handleAnalyze = () => {
     if (!negotiationText.trim()) {
       setError('Please paste your negotiation text before analyzing.');
       return;
     }
-
-    setIsLoading(true);
     setError(null);
+    setIsLoading(true);
 
-    try {
-      const functions = getFunctions(app);
-      const analyzeNegotiation = httpsCallable(functions, 'analyzeNegotiation');
-      const result = await analyzeNegotiation({ text: negotiationText });
-
-      // The result.data will contain the JSON object from the cloud function
-      navigate('/negotiate/results', { state: { analysis: result.data } });
-
-    } catch (err) {
-      console.error("Error calling analyzeNegotiation function:", err);
-      setError("We couldn't analyze your text right now. Please try again later.");
+    // Simulate AI analysis with a delay
+    setTimeout(() => {
+      navigate('/negotiate/results', { state: { analysis: mockAnalysis } });
       setIsLoading(false);
-    }
+    }, 1500);
   };
 
   return (
