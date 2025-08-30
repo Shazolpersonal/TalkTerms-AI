@@ -2,7 +2,7 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from './context/AuthContext';
 import LandingPage from './pages/LandingPage';
-import AuthPage from './pages/AuthPage';
+import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import NegotiatePage from './pages/NegotiatePage';
 import ResultsPage from './pages/ResultsPage';
@@ -28,7 +28,7 @@ function App() {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route
             path="/dashboard"
             element={

@@ -1,16 +1,7 @@
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile
-} from 'firebase/auth';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import app from '@/firebase.config.js';
 
 const auth = getAuth(app);
-const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
 export const signInWithGoogle = async () => {
@@ -33,37 +24,5 @@ export const signOut = async () => {
         console.error("Sign out error", error);
     }
 }
-
-export const signUpWithEmail = async (name, email, password) => {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-
-    await updateProfile(user, {
-      displayName: name
-    });
-
-    await setDoc(doc(db, "users", user.uid), {
-      uid: user.uid,
-      name: name,
-      email: email,
-    });
-
-    return { user };
-  } catch (error) {
-    console.error("Sign up error", error);
-    throw error;
-  }
-};
-
-export const signInWithEmail = async (email, password) => {
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    return { user: userCredential.user };
-  } catch (error) {
-    console.error("Sign in error", error);
-    throw error;
-  }
-};
 
 export default auth;
