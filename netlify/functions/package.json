@@ -2,6 +2,6 @@
   "name": "netlify-functions",
   "version": "1.0.0",
   "dependencies": {
-    "@google/generative-ai": "^0.1.0"
+    "@google/generative-ai": "^0.24.1"
   }
 }

@@ -3,7 +3,7 @@ const { GoogleGenerativeAI } = require('@google/generative-ai');
 // Initialize the Google AI client with the API key from environment variables
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash-latest' });
+const model = genAI.getGenerativeModel({ model: 'models/gemini-1.5-flash-latest' });
 
 const prompt = `
 You are an expert negotiation analyst. Analyze the following negotiation text and return a structured JSON object.
@@ -84,7 +84,7 @@ exports.handler = async (event) => {
     console.error('Error calling Gemini API:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'An error occurred while analyzing the negotiation text.', details: error.message }),
+      body: JSON.stringify({ error: 'Failed to analyze the text.' }),
     };
   }
 };
