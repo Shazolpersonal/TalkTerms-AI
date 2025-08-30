@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import OfferScorecard from '@/components/OfferScorecard';
@@ -13,9 +13,8 @@ import { mockAnalysis } from '@/lib/mock-data';
 
 const ResultsPage = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   // The analysis now comes from the mock data file
-  const [analysis, setAnalysis] = useState(location.state?.analysis || mockAnalysis);
+  const [analysis] = useState(location.state?.analysis || mockAnalysis);
 
   // This effect is no longer needed as we fall back to mock data
   // useEffect(() => {

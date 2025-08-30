@@ -2,7 +2,7 @@ import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuth } from './context/AuthContext';
 import LandingPage from './pages/LandingPage';
-import LoginPage from './pages/LoginPage';
+import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
 import NegotiatePage from './pages/NegotiatePage';
 import ResultsPage from './pages/ResultsPage';
@@ -16,8 +16,8 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    // If the user is logged in, redirect them to the dashboard from the landing or login page.
-    if (currentUser && (location.pathname === '/' || location.pathname === '/login')) {
+    // If the user is logged in, redirect them to the dashboard from the landing or auth page.
+    if (currentUser && (location.pathname === '/' || location.pathname === '/auth')) {
       navigate('/dashboard', { replace: true });
     }
   }, [currentUser, navigate, location]);
@@ -28,7 +28,7 @@ function App() {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/auth" element={<AuthPage />} />
           <Route
             path="/dashboard"
             element={
